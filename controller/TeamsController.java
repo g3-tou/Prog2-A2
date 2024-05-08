@@ -25,7 +25,7 @@ public class TeamsController extends Controller<Teams> {
     @FXML private Button manageButton;
     @FXML private Button deleteButton;
     @FXML private Button closeButton;
-    @FXML private ListView<Team> teamLv;
+    @FXML private ListView<Teams> teamLv;
 
     @FXML private void close(ActionEvent event) {
         stage.close();
