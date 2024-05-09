@@ -12,11 +12,20 @@
 <?import javafx.scene.layout.GridPane?>
 
 <VBox  alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20" 
-       xmlns:fx="http://javafx.com/fxml/1" >
+       xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddTeamController">
     <padding>
         <Insets top="10" bottom="10" left="5" right="5" />
     </padding>
    
+   <GridPane alignment="center" hgap="10" vgap="10">
+    <Label fx:id="teamDeats" GridPane.columnIndex="1" GridPane.rowIndex="0" text="Team Details" styleClass="label-h2"/>
+    <Label fx:id="enterName" GridPane.columnIndex="1" GridPane.rowIndex="1" text="Name:"/>
+    <TextField fx:id="teamName" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+   </GridPane>
+
+   <HBox alignment="center">
+    <Button fx:id="addTeam" text="Add" styleClass="button" onAction="#handleAddTeam"/>
+   </HBox>
    
     <stylesheets>
         <URL value="@style.css"/>

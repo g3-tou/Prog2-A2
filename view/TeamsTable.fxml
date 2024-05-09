@@ -20,7 +20,18 @@
  fx:controller="controller.TeamsController">
 
  <Label fx:id="teamsField" text="All Teams" styleClass="label-opac"/>
- <ListView fx:id="teamsLv" styleClass="list-cell" prefWidth="200" prefHeight="300" />
+ <TableView fx:id="teamsTv" styleClass="table-view" prefWidth="200" prefHeight="300">
+  <columns>
+    <TableColumn fx:id="teamName" text="Team Name" prefWidth="180">  
+    </TableColumn>
+    <TableColumn fx:id="numPlayers" text="Number of Players" prefWidth="180">
+    </TableColumn>
+    <TableColumn fx:id="avgPCredit" text="Average Player Credit" prefWidth="180">
+    </TableColumn>
+    <TableColumn fx:id="avgAge" text="Average Age" prefWidth="180">
+    </TableColumn>
+  </columns>
+ </TableView>
  <HBox spacing="10">
     <Button fx:id="addButton" text="Add" onAction="#handleAdd"/>
     <Button fx:id="manageButton" text="Manage" onAction="#handleManage"/>

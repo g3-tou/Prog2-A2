@@ -3,25 +3,11 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.List; // added by system
-import java.util.Observable; // added by system
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
-//import javafx.scene.control.Label.*;
-import javafx.scene.layout.GridPane;
-import model.Player;
-import model.Players;
 import model.Team;
 import model.Teams;
 
@@ -32,8 +18,11 @@ public class TeamsController extends Controller<Teams> {
     @FXML private Button manageButton;
     @FXML private Button deleteButton;
     @FXML private Button closeButton;
-    @FXML private ListView<Team> teamsLv;
-    @FXML private TableView<Teams> teamsTable;
+    @FXML private TableView<Team> teamsTv;
+    @FXML private TableColumn<Team, String> teamName;
+    @FXML private TableColumn<Team, Integer> numPlayers;
+    @FXML private TableColumn<Team, Double> avgPCredit;
+    @FXML private TableColumn<Team, Double> avgAge;
 
     @FXML private void close(ActionEvent event) {
         stage.close();
@@ -45,7 +34,12 @@ public class TeamsController extends Controller<Teams> {
 
     
     @FXML public void initialize(){
-        teamsLv.setItems(model.currentTeams());
+        teamName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        numPlayers.setCellValueFactory(cellData -> cellData.getValue().countPlayerProperty().asObject());
+        avgPCredit.setCellValueFactory(cellData -> cellData.getValue().countAvgCreditProperty().asObject());
+        avgAge.setCellValueFactory(cellData -> cellData.getValue().countAvgAgeProperty().asObject());
+
+        teamsTv.setItems(getTeams().currentTeams());
     }
 
 
