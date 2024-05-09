@@ -19,11 +19,11 @@
 <VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"  styleClass="background"
  fx:controller="controller.TeamsController">
 
- <Label text="All Teams" style="text-out" alignment="center" />
- <ListView fx:id="teamsLv" items="${controller.teams.currentTeams}" prefWidth="200" prefHeight="300"  style="list-view"/>
+ <Label fx:id="teamsField" text="All Teams" styleClass="label-opac"/>
+ <ListView fx:id="teamsLv" styleClass="list-cell" prefWidth="200" prefHeight="300" />
  <HBox spacing="10">
     <Button fx:id="addButton" text="Add" onAction="#handleAdd"/>
-    <Button fx:id="manageButton" text="Manage"/>
+    <Button fx:id="manageButton" text="Manage" onAction="#handleManage"/>
     <Button fx:id="deleteButton" text="Delete"/>
     <Button fx:id="closeButton" text="Close" onAction="#close"/>
 </HBox>
