@@ -15,8 +15,13 @@
 <?import javafx.scene.layout.GridPane?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.ErrorController"
       alignment="center"
       styleClass="background" spacing="10" prefHeight="300.0" prefWidth="350.0">
+
+      <Label text="Message:" styleClass="label-h2"/>
+      <Text fx:id="errorMessage" styleClass="text-out" text="${controller.exception.message}"/>
+      <Button text="Okay" styleClass="button" alignment="bottom_center" onAction="#handleOkay"/>
 	
     
     <stylesheets>

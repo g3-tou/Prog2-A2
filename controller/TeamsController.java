@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import model.Team;
 import model.Teams;
 
+
 public class TeamsController extends Controller<Teams> {
 
     @FXML private Label teamsField;

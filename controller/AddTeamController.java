@@ -19,12 +19,12 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
-//import javafx.scene.control.Label.*;
 import javafx.scene.layout.GridPane;
 import model.Player;
 import model.Players;
 import model.Team;
 import model.Teams;
+//import model.InputException;
 
 
 public class AddTeamController extends Controller<Teams>{
@@ -33,18 +33,39 @@ public class AddTeamController extends Controller<Teams>{
     @FXML private TextField teamName;
     @FXML private Label enterName;
     @FXML private Button addTeam;
+    @FXML private Label errorMessage;
     
     public Teams getTeams(){
         return model;
     }
-    @FXML private void handleAddTeam(ActionEvent event) throws IOException {
-        String name = teamName.getText().trim();
-        if (!name.isEmpty() && !getTeams().hasTeam(name)){
-            Team newTeam = new Team(name);
-            newTeam.setName(name);
-            getTeams().addTeam(newTeam);
-            Stage stage = (Stage) addTeam.getScene().getWindow();
-            stage.close();
-        }
+    
+    private String getType(){
+        return teamName.getText();
     }
+    private void setType(String type){
+        teamName.setText(type);
+    }
+    @FXML private void handleAddTeam(ActionEvent event) {
+        getTeams().getTeam(getType());
+        stage.close();
+    }
+
+    /*
+    private void setErrorMessage(){
+        errorMessage.setText(name + " already exists");
+    }
+    */
+
+    /*
+    String name = teamName.getText().trim();
+    if (!name.isEmpty() && !getTeams().hasTeam(name)){
+        Team newTeam = new Team(name);
+        newTeam.setName(name);
+        getTeams().addTeam(newTeam);
+        stage.close();
+        
+        Stage errorStage = new Stage();
+            errorStage.getIcons().add(new Image("/view/error.png"));
+            ViewLoader.showStage( "/view/error.fxml", "Error", errorStage); 
+    */
 }
