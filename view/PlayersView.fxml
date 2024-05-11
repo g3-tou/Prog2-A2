@@ -15,9 +15,36 @@
 <?import javafx.geometry.Insets?>  
 <?import javafx.scene.layout.GridPane?>
 
-<VBox  xmlns:fx="http://javafx.com/fxml/1" styleClass="background" alignment="CENTER" >
-    
+<VBox  xmlns:fx="http://javafx.com/fxml/1" styleClass="background" alignment="CENTER" 
+    fx:controller="controller.ViewPlayersController">
 
+    <Label fx:id="playersField" text="All Players" styleClass="label-opac"/>
+    <TableView fx:id="playersTv" styleClass="table-view" prefHeight="230">
+    <columns>
+        <TableColumn fx:id="teamsClm" text="Team" prefWidth="150"/>  
+        <TableColumn fx:id="nameClm" text="Player Name" prefWidth="150"/>
+        <TableColumn fx:id="creditClm" text="Player Credit" prefWidth="150"/>
+        <TableColumn fx:id="ageClm" text="Player Age" prefWidth="150"/>
+        <TableColumn fx:id="numberClm" text="Player No" prefWidth="150"/>
+        <TableColumn fx:id="levelClm" text="Player Level" prefWidth="150"/>
+    </columns>
+    </TableView>
+    
+    <Label fx:id="f" text="Filter" styleClass="label-opac" alignment="center"/>
+    <GridPane alignment="bottom_center" hgap="10" vgap="20">
+    <Label fx:id="byL" GridPane.columnIndex="0" GridPane.rowIndex="0" text="Filter By Level: " styleClass="heading"/>
+    <TextField fx:id="byLevel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <Label fx:id="byN" GridPane.columnIndex="2" GridPane.rowIndex="0" text="Filter By Name: " styleClass="heading"/>
+    <TextField fx:id="byName" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+    </GridPane>
+    <Label fx:id="byA" alignment="center" text="Filter By Age: " styleClass="heading"/>
+    <GridPane alignment="bottom_center" hgap="10" vgap="20">
+    <Label fx:id="fA" GridPane.columnIndex="0" GridPane.rowIndex="0" text="From: " styleClass="heading"/>
+    <TextField fx:id="fromAge" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <Label fx:id="tA" GridPane.columnIndex="2" GridPane.rowIndex="0" text="To: " styleClass="heading"/>
+    <TextField fx:id="toAge" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+    </GridPane>
+    <Button fx:id="close" text="Close" styleClass="button" onAction="#close"/>
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>

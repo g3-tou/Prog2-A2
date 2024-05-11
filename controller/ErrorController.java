@@ -15,5 +15,6 @@ public class ErrorController extends Controller<InputException> {
 
     @FXML private void handleOkay(ActionEvent event){
         stage.close();
-    } 
+    }
+
 }

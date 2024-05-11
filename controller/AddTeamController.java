@@ -3,10 +3,6 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List; // added by system
 import java.util.Observable; // added by system
 import java.util.logging.Level;
@@ -19,12 +15,9 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import model.Player;
-import model.Players;
+import model.InputException;
 import model.Team;
 import model.Teams;
-//import model.InputException;
 
 
 public class AddTeamController extends Controller<Teams>{
@@ -39,33 +32,41 @@ public class AddTeamController extends Controller<Teams>{
         return model;
     }
     
-    private String getType(){
+    /*private String getType(){
         return teamName.getText();
     }
     private void setType(String type){
         teamName.setText(type);
-    }
+    } */
+    /*  private void setErrorMessage(){
+        errorMessage.setText(teamName + " already exists");
+    }*/
     @FXML private void handleAddTeam(ActionEvent event) {
-        getTeams().getTeam(getType());
-        stage.close();
-    }
-
-    /*
-    private void setErrorMessage(){
-        errorMessage.setText(name + " already exists");
-    }
-    */
-
-    /*
-    String name = teamName.getText().trim();
-    if (!name.isEmpty() && !getTeams().hasTeam(name)){
-        Team newTeam = new Team(name);
-        newTeam.setName(name);
-        getTeams().addTeam(newTeam);
-        stage.close();
-        
-        Stage errorStage = new Stage();
+        //getTeams().getTeam(getType());
+        //implement add method, currently it doesnt add shit 
+        String name = teamName.getText().trim();
+        try{
+            if (!name.isEmpty() && !getTeams().hasTeam(name)){
+                Team newTeam = new Team(name);
+                newTeam.setName(name);
+                getTeams().addTeam(newTeam); 
+            }
+            else{
+               //errorMessage.setText(name + " already exists");
+               throw new InputException(name + " already exists");
+            }
+        }
+        catch(Exception e){
+            Stage errorStage = new Stage();
             errorStage.getIcons().add(new Image("/view/error.png"));
-            ViewLoader.showStage( "/view/error.fxml", "Error", errorStage); 
-    */
+            //ViewLoader.showStage(InputException(), "/view/error.fxml", "Error", errorStage);
+            
+        }
+        finally{
+            stage.close();
+        }
+    }
+
+    
+
 }
