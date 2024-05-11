@@ -25,7 +25,7 @@ import model.Players;
 import model.Team;
 import model.Teams;
 
-public class ViewPlayersController extends Controller<Players> {
+public class ViewPlayersController extends Controller<Teams> {
 
     @FXML private TableView<Player> playersTv;
     @FXML private TableColumn<Player, String> teamsClm;
@@ -49,7 +49,7 @@ public class ViewPlayersController extends Controller<Players> {
     @FXML private TextField toAge;
     @FXML private Button close;
 
-    @FXML public Players getPlayers(){
+    public Teams getPlayers() {
         return model;
     }
 
@@ -62,7 +62,7 @@ public class ViewPlayersController extends Controller<Players> {
         numberClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerNoProperty().asObject());
         levelClm.setCellValueFactory(cellData -> cellData.getValue().levelProperty());
 
-        playersTv.setItems(getPlayers().getPlayersList());
+        playersTv.setItems(getPlayers().allPlayersList());
 
         byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         byName.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
