@@ -15,7 +15,8 @@
 <?import javafx.geometry.Insets?> 
 <?import javafx.scene.layout.GridPane?> 
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="controller.CurrentRoundTeamsController">
    
     <stylesheets>
         <URL value="@style.css"/>

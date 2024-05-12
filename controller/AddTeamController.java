@@ -45,28 +45,16 @@ public class AddTeamController extends Controller<Teams>{
         //getTeams().getTeam(getType());
         //implement add method, currently it doesnt add shit 
         String name = teamName.getText().trim();
-        try{
             if (!name.isEmpty() && !getTeams().hasTeam(name)){
                 Team newTeam = new Team(name);
                 newTeam.setName(name);
                 getTeams().addTeam(newTeam); 
+                stage.close();
             }
             else{
-               //errorMessage.setText(name + " already exists");
-               throw new InputException(name + " already exists");
-            }
-        }
-        catch(Exception e){
-            Stage errorStage = new Stage();
-            errorStage.getIcons().add(new Image("/view/error.png"));
-            //ViewLoader.showStage(InputException(), "/view/error.fxml", "Error", errorStage);
-            
-        }
-        finally{
-            stage.close();
-        }
+                Stage errorStage = new Stage();
+                errorStage.getIcons().add(new Image("/view/error.png"));
+                //ViewLoader.showStage(InputException(), "/view/error.fxml", "Error", errorStage);
+            }            
     }
-
-    
-
 }

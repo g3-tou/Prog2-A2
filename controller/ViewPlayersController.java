@@ -23,9 +23,9 @@ import javafx.scene.layout.GridPane;
 import model.Player;
 import model.Players;
 import model.Team;
-import model.Teams;
+//import model.Teams;
 
-public class ViewPlayersController extends Controller<Teams> {
+public class ViewPlayersController extends Controller<Players> {
 
     @FXML private TableView<Player> playersTv;
     @FXML private TableColumn<Player, String> teamsClm;
@@ -49,8 +49,12 @@ public class ViewPlayersController extends Controller<Teams> {
     @FXML private TextField toAge;
     @FXML private Button close;
 
-    public Teams getPlayers() {
+    public Players getPlayers() {
         return model;
+    }
+
+    private String getName(){
+        return byName.getText();
     }
 
     @FXML public void initialize(){
@@ -62,17 +66,19 @@ public class ViewPlayersController extends Controller<Teams> {
         numberClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerNoProperty().asObject());
         levelClm.setCellValueFactory(cellData -> cellData.getValue().levelProperty());
 
-        playersTv.setItems(getPlayers().allPlayersList());
+        playersTv.setItems(getPlayers().getFilteredPlayersList());
 
-        byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
+       byName.textProperty().addListener(Event -> getPlayers().filterList(getName(),"0",0,0));
+      /*   byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         byName.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         fromAge.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         toAge.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
+    */
     }
 
-    private void filterPlayers(){
+    /*private void filterPlayers(){
         //getPlayers().filterPlayers(byLevel.getText(), byName.getText(), fromAge.getText(), toAge.getText());
-    }
+    }*/
 
     @FXML public void close(ActionEvent event){
         stage.close();
