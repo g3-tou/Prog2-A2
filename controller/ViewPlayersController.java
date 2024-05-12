@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -25,7 +26,7 @@ import model.Players;
 import model.Team;
 import model.Teams;
 
-public class ViewPlayersController extends Controller<Players> {
+public class ViewPlayersController extends Controller<Teams> {
 
     @FXML private TableView<Player> playersTv;
     @FXML private TableColumn<Player, String> teamsClm;
@@ -49,7 +50,7 @@ public class ViewPlayersController extends Controller<Players> {
     @FXML private TextField toAge;
     @FXML private Button close;
 
-    @FXML public Players getPlayers(){
+    @FXML public Teams getPlayers(){
         return model;
     }
 
@@ -62,7 +63,8 @@ public class ViewPlayersController extends Controller<Players> {
         numberClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerNoProperty().asObject());
         levelClm.setCellValueFactory(cellData -> cellData.getValue().levelProperty());
 
-        playersTv.setItems(getPlayers().getPlayersList());
+        playersTv.setItems(getPlayers().allPlayersList());
+        playersTv.setPlaceholder(new Label("Players list is not loaded."));
 
         byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         byName.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
@@ -71,7 +73,29 @@ public class ViewPlayersController extends Controller<Players> {
     }
 
     private void filterPlayers(){
+    String nameFilter = byName.getText().toLowerCase(); // Get name filter text
+    String levelFilter = byLevel.getText().toLowerCase(); // Get level filter text
+    int minAge = fromAge.getText().isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(fromAge.getText()); // Get min age filter
+    int maxAge = toAge.getText().isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(toAge.getText()); // Get max age filter
 
+    ObservableList<Player> filteredPlayers = FXCollections.observableArrayList();
+
+    for (Player player : getPlayers().allPlayersList()) {
+        // Check if the player's name contains the name filter text (case-insensitive)
+        boolean nameMatch = player.getName().toLowerCase().contains(nameFilter);
+        // Check if the player's level contains the level filter text (case-insensitive)
+        boolean levelMatch = player.getLevel().toLowerCase().contains(levelFilter);
+        // Check if the player's age is within the specified range
+        boolean ageMatch = player.getAge() >= minAge && player.getAge() <= maxAge;
+
+        // If all conditions are met, add the player to the filtered list
+        if (nameMatch && levelMatch && ageMatch) {
+            filteredPlayers.add(player);
+        }
+    }
+
+    // Update the table view with the filtered list of players
+    playersTv.setItems(filteredPlayers);
     }
 
     @FXML public void close(ActionEvent event){
