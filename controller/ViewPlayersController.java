@@ -71,7 +71,7 @@ public class ViewPlayersController extends Controller<Teams> {
     }
 
     private void filterPlayers(){
-
+        //getPlayers().filterPlayers(byLevel.getText(), byName.getText(), fromAge.getText(), toAge.getText());
     }
 
     @FXML public void close(ActionEvent event){
