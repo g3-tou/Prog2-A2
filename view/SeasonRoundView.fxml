@@ -17,7 +17,11 @@
 
 <VBox styleClass="background"  alignment="CENTER" prefHeight="400" prefWidth="800" spacing="20" xmlns:fx="http://javafx.com/fxml/1"
 fx:controller="controller.TeamsRoundController">
-    
+    <Label fx:id="round" text="Round" styleClass="label-header"/>
+    <HBox spacing="10">
+    <ListView prefWidth="200" prefHeight="600" fx:id="teamsLv" styleClass="list-view"/>
+    <Button fx:id="activateButton" styleClass="button" text=">>>"/>
+    </HBox>
     
     <stylesheets>
         <URL value="@style.css"/>
