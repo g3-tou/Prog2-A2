@@ -1,29 +1,12 @@
 package controller;
 
-import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.List; // added by system
-import java.util.Observable; // added by system
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList; // added by system
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.scene.image.Image;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 import model.Player;
-import model.Players;
-import model.Team;
 import model.Teams;
 
 public class ViewPlayersController extends Controller<Teams> {
