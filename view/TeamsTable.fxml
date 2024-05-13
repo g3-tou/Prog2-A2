@@ -35,7 +35,7 @@
  <HBox spacing="10">
     <Button fx:id="addButton" text="Add" onAction="#handleAdd"/>
     <Button fx:id="manageButton" text="Manage" onAction="#handleManage"/>
-    <Button fx:id="deleteButton" text="Delete"/>
+    <Button fx:id="deleteButton" text="Delete" onAction="#handleDelete"/>
     <Button fx:id="closeButton" text="Close" onAction="#close"/>
 </HBox>
     

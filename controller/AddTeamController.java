@@ -38,35 +38,30 @@ public class AddTeamController extends Controller<Teams>{
     private void setType(String type){
         teamName.setText(type);
     } */
-    /*  private void setErrorMessage(){
+     private void setErrorMessage(){
         errorMessage.setText(teamName + " already exists");
-    }*/
-    @FXML private void handleAddTeam(ActionEvent event) {
+    }
+    @FXML private void handleAddTeam(ActionEvent event) throws IOException {
         //getTeams().getTeam(getType());
         //implement add method, currently it doesnt add shit 
         String name = teamName.getText().trim();
-        try{
             if (!name.isEmpty() && !getTeams().hasTeam(name)){
                 Team newTeam = new Team(name);
                 newTeam.setName(name);
                 getTeams().addTeam(newTeam); 
+                stage.close();
             }
             else{
-               //errorMessage.setText(name + " already exists");
-               throw new InputException(name + " already exists");
-            }
-        }
-        catch(Exception e){
-            Stage errorStage = new Stage();
-            errorStage.getIcons().add(new Image("/view/error.png"));
-            //ViewLoader.showStage(InputException(), "/view/error.fxml", "Error", errorStage);
-            
-        }
-        finally{
-            stage.close();
-        }
+                //showErrorWindow(name + "already exists");
+                /*Stage errorStage = new Stage();
+                errorStage.getIcons().add(new Image("/view/error.png"));
+                ViewLoader.showStage(, "/view/error.fxml", "Error", errorStage);*/
+            }            
     }
 
-    
-
+   /*  private void showErrorWindow(String message){
+        Stage errorStage = new Stage();
+        errorStage.getIcons().add(new Image("/view/error.png"));
+        ViewLoader.showStage(message, "/view/error.fxml", "Error", errorStage);
+    } */
 }

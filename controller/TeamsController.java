@@ -40,6 +40,10 @@ public class TeamsController extends Controller<Teams> {
         avgPCredit.setCellValueFactory(cellData -> cellData.getValue().countAvgCreditProperty().asObject());
         avgAge.setCellValueFactory(cellData -> cellData.getValue().countAvgAgeProperty().asObject());
 
+        manageButton.disableProperty().bind(teamsTv.getSelectionModel().selectedItemProperty().isNull());
+        deleteButton.disableProperty().bind(teamsTv.getSelectionModel().selectedItemProperty().isNull());
+        addButton.disableProperty().bind(teamsTv.getSelectionModel().selectedItemProperty().isNotNull());
+
         teamsTv.setItems(getTeams().currentTeams());
     }
 
@@ -63,7 +67,7 @@ public class TeamsController extends Controller<Teams> {
     }
 
     @FXML private void handleDelete(ActionEvent event) throws IOException {
-        
+        model.remove(teamsTv.getSelectionModel().getSelectedItem());
     }
 }
 
