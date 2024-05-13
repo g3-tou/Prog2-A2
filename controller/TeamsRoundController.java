@@ -44,11 +44,11 @@ public class TeamsRoundController extends Controller<Season> {
     }
 
     @FXML public void activate(ActionEvent event){
-        
+
     }
 
     @FXML public void arrangeSeason(ActionEvent event){
-
+        stage.close();
     }
 }
 
