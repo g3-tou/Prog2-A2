@@ -24,7 +24,7 @@ import javafx.scene.layout.GridPane;
 import model.Player;
 import model.Players;
 import model.Team;
-//import model.Teams;
+import model.Teams;
 
 public class ViewPlayersController extends Controller<Teams> {
 
@@ -50,7 +50,7 @@ public class ViewPlayersController extends Controller<Teams> {
     @FXML private TextField toAge;
     @FXML private Button close;
 
-    @FXML public Players getPlayers(){
+    public Teams getPlayers(){
         return model;
     }
 
@@ -67,18 +67,40 @@ public class ViewPlayersController extends Controller<Teams> {
         numberClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerNoProperty().asObject());
         levelClm.setCellValueFactory(cellData -> cellData.getValue().levelProperty());
 
-        playersTv.setItems(getPlayers().getPlayersList());
+        playersTv.setItems(getPlayers().allPlayersList());
 
-       byName.textProperty().addListener(Event -> getPlayers().filterList(getName(),"0",0,0));
-      /*   byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
+       //byName.textProperty().addListener(Event -> getPlayers().filterList(getName(),"0",0,0));
+        byLevel.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         byName.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         fromAge.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
         toAge.textProperty().addListener((observable, oldValue, newValue) -> filterPlayers());
-    */
+    
     }
 
     private void filterPlayers(){
+    String nameFilter = byName.getText().toLowerCase(); // Get name filter text
+    String levelFilter = byLevel.getText().toLowerCase(); // Get level filter text
+    int minAge = fromAge.getText().isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(fromAge.getText()); // Get min age filter
+    int maxAge = toAge.getText().isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(toAge.getText()); // Get max age filter
 
+    ObservableList<Player> filteredPlayers = FXCollections.observableArrayList();
+
+    for (Player player : getPlayers().allPlayersList()) {
+        // Check if the player's name contains the name filter text (case-insensitive)
+        boolean nameMatch = player.getName().toLowerCase().contains(nameFilter);
+        // Check if the player's level contains the level filter text (case-insensitive)
+        boolean levelMatch = player.getLevel().toLowerCase().contains(levelFilter);
+        // Check if the player's age is within the specified range
+        boolean ageMatch = player.getAge() >= minAge && player.getAge() <= maxAge;
+
+        // If all conditions are met, add the player to the filtered list
+        if (nameMatch && levelMatch && ageMatch) {
+            filteredPlayers.add(player);
+        }
+    }
+
+    // Update the table view with the filtered list of players
+    playersTv.setItems(filteredPlayers);
     }
 
     @FXML public void close(ActionEvent event){
