@@ -19,6 +19,7 @@ import model.InputException;
 import model.Team;
 import model.Teams;
 
+//just needs the selected team.... not the whole team list?
 public class ManageTeamController extends Controller<Team> {
 
   

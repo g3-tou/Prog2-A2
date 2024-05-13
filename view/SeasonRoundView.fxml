@@ -20,8 +20,16 @@ fx:controller="controller.TeamsRoundController">
     <Label fx:id="round" text="Round" styleClass="label-header"/>
     <HBox spacing="10">
     <ListView prefWidth="200" prefHeight="600" fx:id="teamsLv" styleClass="list-view"/>
-    <Button fx:id="activateButton" styleClass="button" text=">>>"/>
+    <Button fx:id="activateButton" styleClass="button" text=">>>" onAction="#activate"/>
+    <TableView prefWidth="400" prefHeight="600" fx:id="teamsAddedTv" styleClass="table-view">
+    <columns>
+    <TableColumn fx:id="rounds" text="Game" prefWidth="128"/>
+    <TableColumn fx:id="team1" text="Team-1" prefWidth="128"/>
+    <TableColumn fx:id="team2" text="Team-2" prefWidth="128"/>
+    </columns>
+    </TableView>
     </HBox>
+    <Button fx:id="arrangeButton" styleClass="button" text="Arrange season" onAction="#arrangeSeason"/>
     
     <stylesheets>
         <URL value="@style.css"/>

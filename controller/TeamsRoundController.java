@@ -25,7 +25,10 @@ import model.Game;
 public class TeamsRoundController extends Controller<Season> {
     @FXML private Label round;
     @FXML private ListView<Team> teamsLv;
-    @FXML private TableView<Game> teamsAdded; //teams need to be added into the schedule/game
+    @FXML private TableView<Game> teamsAddedTv; //teams need to be added into the schedule/game
+    @FXML private TableColumn<Game, Integer> rounds;
+    @FXML private TableColumn<Game, String> team1;
+    @FXML private TableColumn<Game, String> team2;
     @FXML private Button activateButton;
     @FXML private Button arrangeButton;
 
@@ -34,8 +37,18 @@ public class TeamsRoundController extends Controller<Season> {
     }
 
     @FXML public void initialize(){
+        teamsAddedTv.setPlaceholder(new Label("No teams added to round."));
+        teamsLv.setPlaceholder(new Label("All teams added to round."));
         ObservableList<Team> teams = getSeason().getCurrentTeams();
         teamsLv.setItems(teams);
+    }
+
+    @FXML public void activate(ActionEvent event){
+        
+    }
+
+    @FXML public void arrangeSeason(ActionEvent event){
+
     }
 }
 
