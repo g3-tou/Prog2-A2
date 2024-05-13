@@ -15,8 +15,26 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>  
 
-<VBox   alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"  styleClass="background">
-    
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1"  styleClass="background" prefWidth="700"
+fx:controller="controller.ManageTeamController">
+    <GridPane alignment="center">
+    <Label fx:id="teamName" text="Team Name: " styleClass="label-opac" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <TextField fx:id="teamNF" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    </GridPane>
+    <TableView fx:id="playersTv" prefWidth="400">
+    <columns>
+    <TableColumn fx:id="nameClm" text="Player Name" prefWidth="180"/>
+    <TableColumn fx:id="creditClm" text="Player credit" prefWidth="180"/>
+    <TableColumn fx:id="ageClm" text="Player Age" prefWidth="180"/>
+    <TableColumn fx:id="numberClm" text="Player No" prefWidth="180"/>
+    </columns>
+    </TableView>
+    <HBox>
+    <Button fx:id="addButton" text="Add" styleClass="Button" />
+    <Button fx:id="updateButton" text="Update" styleClass="Button"/>
+    <Button fx:id="deleteButton" text="Delete" styleClass="Button"/>
+    <Button fx:id="saveCloseButton" text="Save and Close" styleClass="Button"/>
+    </HBox>
     
     <stylesheets>
         <URL value="@style.css"/>

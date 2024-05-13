@@ -58,12 +58,23 @@ public class TeamsController extends Controller<Teams> {
     }
 
     @FXML private void handleManage(ActionEvent event) throws IOException {
-        Stage stage8 = new Stage();
+        Team selectedTeam = teamsTv.getSelectionModel().getSelectedItem();
+        /*Stage stage8 = new Stage();
         stage8.setX(ViewLoader.X + 601);
         stage8.setY(ViewLoader.Y);
 
         stage8.getIcons().add(new Image("/view/edit.png"));
-        ViewLoader.showStage(getTeams(), "/view/ManageTeamView.fxml", "Managing Team: ", stage8);
+        ViewLoader.showStage(getTeams(), "/view/ManageTeamView.fxml", "Managing Team: " + selectedTeam.getName(), stage8);*/
+        if (selectedTeam != null) {
+            Stage stage8 = new Stage();
+            stage8.setX(ViewLoader.X + 601);
+            stage8.setY(ViewLoader.Y);
+    
+            stage8.getIcons().add(new Image("/view/edit.png"));
+            
+            // Pass selected team as model
+            ViewLoader.showStage(selectedTeam, "/view/ManageTeamView.fxml", "Managing Team: " + selectedTeam.getName(), stage8);
+        }
     }
 
     @FXML private void handleDelete(ActionEvent event) throws IOException {
