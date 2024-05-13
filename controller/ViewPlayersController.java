@@ -54,10 +54,6 @@ public class ViewPlayersController extends Controller<Teams> {
         return model;
     }
 
-    private String getName(){
-        return byName.getText();
-    }
-
     @FXML public void initialize(){
         
         teamsClm.setCellValueFactory(cellData -> cellData.getValue().getTeamNameProperty());
@@ -77,29 +73,26 @@ public class ViewPlayersController extends Controller<Teams> {
     
     }
 
+    /*I couldn't access the filter list in the players class as it kept returning 
+    model.Teams cannot be cast to model.Players when I was using the Players model
+    so I had to do the filtering myself.*/
     private void filterPlayers(){
-    String nameFilter = byName.getText().toLowerCase(); // Get name filter text
-    String levelFilter = byLevel.getText().toLowerCase(); // Get level filter text
-    int minAge = fromAge.getText().isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(fromAge.getText()); // Get min age filter
-    int maxAge = toAge.getText().isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(toAge.getText()); // Get max age filter
+    String nameFilter = byName.getText().toLowerCase(); 
+    String levelFilter = byLevel.getText().toLowerCase(); 
+    int minAge = fromAge.getText().isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(fromAge.getText()); 
+    int maxAge = toAge.getText().isEmpty() ? Integer.MAX_VALUE : Integer.parseInt(toAge.getText()); 
 
     ObservableList<Player> filteredPlayers = FXCollections.observableArrayList();
 
     for (Player player : getPlayers().allPlayersList()) {
-        // Check if the player's name contains the name filter text (case-insensitive)
         boolean nameMatch = player.getName().toLowerCase().contains(nameFilter);
-        // Check if the player's level contains the level filter text (case-insensitive)
         boolean levelMatch = player.getLevel().toLowerCase().contains(levelFilter);
-        // Check if the player's age is within the specified range
         boolean ageMatch = player.getAge() >= minAge && player.getAge() <= maxAge;
 
-        // If all conditions are met, add the player to the filtered list
         if (nameMatch && levelMatch && ageMatch) {
             filteredPlayers.add(player);
         }
     }
-
-    // Update the table view with the filtered list of players
     playersTv.setItems(filteredPlayers);
     }
 

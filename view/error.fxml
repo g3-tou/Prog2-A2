@@ -21,7 +21,7 @@
 
       <Label text="Message:" styleClass="label-h2"/>
       <Text fx:id="errorMessage" styleClass="text-out" text="${controller.exception.message}"/>
-      <Button text="Okay" styleClass="button" alignment="bottom_center" onAction="#handleOkay"/>
+      <Button text="Okay" styleClass="button" onAction="#handleOkay"/>
 	
     
     <stylesheets>

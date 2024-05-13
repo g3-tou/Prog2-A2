@@ -31,19 +31,7 @@ public class AddTeamController extends Controller<Teams>{
     public Teams getTeams(){
         return model;
     }
-    
-    /*private String getType(){
-        return teamName.getText();
-    }
-    private void setType(String type){
-        teamName.setText(type);
-    } */
-     private void setErrorMessage(){
-        errorMessage.setText(teamName + " already exists");
-    }
     @FXML private void handleAddTeam(ActionEvent event) throws IOException {
-        //getTeams().getTeam(getType());
-        //implement add method, currently it doesnt add shit 
         String name = teamName.getText().trim();
             if (!name.isEmpty() && !getTeams().hasTeam(name)){
                 Team newTeam = new Team(name);
@@ -52,16 +40,11 @@ public class AddTeamController extends Controller<Teams>{
                 stage.close();
             }
             else{
-                //showErrorWindow(name + "already exists");
-                /*Stage errorStage = new Stage();
+                Stage errorStage = new Stage();
                 errorStage.getIcons().add(new Image("/view/error.png"));
-                ViewLoader.showStage(, "/view/error.fxml", "Error", errorStage);*/
-            }            
-    }
+                ViewLoader.showStage(new InputException(name + " Team already exists"), "/view/error.fxml", "Error", errorStage);
+            }                 
+}
 
-   /*  private void showErrorWindow(String message){
-        Stage errorStage = new Stage();
-        errorStage.getIcons().add(new Image("/view/error.png"));
-        ViewLoader.showStage(message, "/view/error.fxml", "Error", errorStage);
-    } */
+   
 }

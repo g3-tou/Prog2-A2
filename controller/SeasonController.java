@@ -49,8 +49,15 @@ public class SeasonController extends Controller<Season> {
         stage5.setY(ViewLoader.Y);
 
         stage5.getIcons().add(new Image("/view/nba.png"));
-        ViewLoader.showStage(new InputException("All games have been played"), "/view/error.fxml", "All Games Played!", stage5);
+        Season season = getSeason();
+    String result = season.play(season.round());
+
+    // You should pass an InputException object instead of a String
+    InputException inputException = new InputException(result);
+    ViewLoader.showStage(inputException, "/view/error.fxml", "All Games Played!", stage5);
+        //ViewLoader.showStage(getSeason(), "/view/error.fxml", "All Games Played!", stage5);
     }
+
 
     @FXML private void viewResults(ActionEvent event) throws IOException {
         Stage stage6 = new Stage();
