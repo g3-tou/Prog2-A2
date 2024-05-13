@@ -22,7 +22,7 @@
     <VBox alignment="center" spacing="20">
         <Button fx:id="roundButton" prefWidth="300" text="Round" style="button" onAction="#viewRounds"/>
         <Button fx:id="currentButton" prefWidth="300" text="Current" style="button" onAction="#viewCurrentRound"/>
-        <Button fx:id="gameButton" prefWidth="300" text="Game" style="button"/>
+        <Button fx:id="gameButton" prefWidth="300" text="Game" style="button" onAction="#viewGames"/>
         <Button fx:id="resultButton" prefWidth="300" text="Result" style="button" onAction="#viewResults"/>
         <Button fx:id="closeButton" prefWidth="300" text="Close" style="button" onAction="#close"/>
     </VBox>   

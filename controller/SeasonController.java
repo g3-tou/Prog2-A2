@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
+import model.InputException;
 import model.Season;
 
 public class SeasonController extends Controller<Season> {
@@ -42,14 +43,14 @@ public class SeasonController extends Controller<Season> {
         ViewLoader.showStage(getSeason(), "/view/CurrentRoundTeams.fxml", "Tournament", stage4);
     }
 
-    /*@FXML private void viewGames(ActionEvent event) throws IOException {
+    @FXML private void viewGames(ActionEvent event) throws IOException {
         Stage stage5 = new Stage();
         stage5.setX(ViewLoader.X + 601);
         stage5.setY(ViewLoader.Y);
 
         stage5.getIcons().add(new Image("/view/nba.png"));
-        ViewLoader.showStage(getSeason(), "/view/SeasonGamesView.fxml", "All Games Played!", stage5);
-    }*/
+        ViewLoader.showStage(new InputException("All games have been played"), "/view/error.fxml", "All Games Played!", stage5);
+    }
 
     @FXML private void viewResults(ActionEvent event) throws IOException {
         Stage stage6 = new Stage();

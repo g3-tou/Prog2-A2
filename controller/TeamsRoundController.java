@@ -25,6 +25,7 @@ import model.Game;
 public class TeamsRoundController extends Controller<Season> {
     @FXML private Label round;
     @FXML private ListView<Team> teamsLv;
+    @FXML private TableView<Game> teamsAdded; //teams need to be added into the schedule/game
     @FXML private Button activateButton;
     @FXML private Button arrangeButton;
 
