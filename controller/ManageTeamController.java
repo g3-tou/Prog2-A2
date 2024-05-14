@@ -37,6 +37,8 @@ public class ManageTeamController extends Controller<Team> {
         ageClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerAgeProperty().asObject());
         creditClm.setCellValueFactory(cellData -> cellData.getValue().getPlayerCreditProperty().asObject());
 
+        teamNF.setText(getTeam().getName());
+
         updateButton.disableProperty().bind(playersTv.getSelectionModel().selectedItemProperty().isNull());
         deleteButton.disableProperty().bind(playersTv.getSelectionModel().selectedItemProperty().isNull());
         addButton.disableProperty().bind(playersTv.getSelectionModel().selectedItemProperty().isNotNull());
@@ -67,6 +69,8 @@ public class ManageTeamController extends Controller<Team> {
     }
 
     @FXML public void saveClose(ActionEvent event){
+        String newName = teamNF.getText();
+        getTeam().setName(newName);
         stage.close();
     }
 

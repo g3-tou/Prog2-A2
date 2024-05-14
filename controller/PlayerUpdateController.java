@@ -4,24 +4,13 @@ import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List; // added by system
-import java.util.Observable; // added by system
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.property.Property;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import model.InputException;
-import model.Team;
-import model.Teams;
 import model.Player;
-import model.Players;
 
 public class PlayerUpdateController extends Controller<Player> {
    @FXML private Label details;
@@ -45,7 +34,8 @@ public class PlayerUpdateController extends Controller<Player> {
 
    @FXML private void initialize() {
        //name.textProperty().bindBidirectional(model.getName());
-       name.textProperty().bind(model.nameProperty());
+       name.textProperty().bind(model.nameProperty()); /*keep getting the error model.Team cannot 
+       be cast to model.Player and idk how to fix that as i am sure i am referencing the right thing*/
        //name.setText(model.nameProperty().get());
        /*credit.textProperty().bind(model.getPlayerCreditProperty().asString());
        age.textProperty().bind(model.getPlayerAgeProperty().asString());
