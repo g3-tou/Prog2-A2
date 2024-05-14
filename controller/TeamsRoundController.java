@@ -1,6 +1,8 @@
 package controller;
 
 import au.edu.uts.ap.javafx.Controller;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
@@ -24,7 +26,7 @@ public class TeamsRoundController extends Controller<Season> {
     }
 
     @FXML public void initialize(){
-        round.setText("Round " + getSeason().round()+round);
+        round.setText("Round: " + (getSeason().round()+1));
         teamsAddedTv.setPlaceholder(new Label("No teams added to round."));
         teamsLv.setPlaceholder(new Label("All teams added to round."));
         
@@ -39,6 +41,11 @@ public class TeamsRoundController extends Controller<Season> {
         team1.setCellValueFactory(cellData -> cellData.getValue().team1());
         team2.setCellValueFactory(cellData -> cellData.getValue().team2());
 
+        BooleanBinding noTeamsSelected = Bindings.size(teamsLv.getSelectionModel().getSelectedItems()).isNotEqualTo(2);
+        activateButton.disableProperty().bind(noTeamsSelected);
+
+        BooleanBinding teamsRemaining = Bindings.isNotEmpty(teamsLv.getItems());
+        arrangeButton.disableProperty().bind(teamsRemaining);
     }
 
     @FXML public void activate(ActionEvent event){

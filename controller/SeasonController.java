@@ -50,7 +50,7 @@ public class SeasonController extends Controller<Season> {
 
         stage5.getIcons().add(new Image("/view/nba.png"));
         Season season = getSeason();
-        String result = season.play(season.round());
+        String result = season.playGame();
 
         InputException inputException = new InputException(result);
         ViewLoader.showStage(inputException, "/view/error.fxml", "All Games Played!", stage5);

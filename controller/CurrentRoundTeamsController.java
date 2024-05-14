@@ -24,6 +24,7 @@ public class CurrentRoundTeamsController extends Controller<Season> {
     }
 
     @FXML public void initialize() {
+        round.setText("Round: " + (getSeason().round()+1));
         currentRounds.setPlaceholder(new Label("No teams to show."));
         column1.setCellValueFactory(cellData -> cellData.getValue().team1());
         column2.setCellValueFactory(cellData -> new SimpleStringProperty("VS"));

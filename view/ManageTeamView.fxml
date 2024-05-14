@@ -32,8 +32,8 @@ fx:controller="controller.ManageTeamController">
     <HBox>
     <Button fx:id="addButton" text="Add" styleClass="Button" onAction="#add"/>
     <Button fx:id="updateButton" text="Update" styleClass="Button" onAction="#update"/>
-    <Button fx:id="deleteButton" text="Delete" styleClass="Button"/>
-    <Button fx:id="saveCloseButton" text="Save and Close" styleClass="Button"/>
+    <Button fx:id="deleteButton" text="Delete" styleClass="Button" onAction="#delete"/>
+    <Button fx:id="saveCloseButton" text="Save and Close" styleClass="Button" onAction="#saveClose"/>
     </HBox>
     
     <stylesheets>

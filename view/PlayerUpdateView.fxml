@@ -12,10 +12,26 @@
 <?import javafx.scene.layout.GridPane?>
 
 <VBox alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20" 
-      xmlns:fx="http://javafx.com/fxml/1"  >
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerUpdateController" >
     <padding>
         <Insets top="10" bottom="10" left="5" right="5" />
     </padding>
+    <Label fx:id="details" text="Player Details" styleClass="label-h2"/>
+    <GridPane alignment="center" hgap="10" vgap="10">
+        <Label fx:id="name" text="Player Name: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="playerName" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label fx:id="credit" text="Player Credit: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="playerCredit" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label fx:id="age" text="Player Age: " GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="playerAge" GridPane.columnIndex="1" GridPane.rowIndex="2" /> 
+        <Label fx:id="num" text="Player No: " GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="playerNum" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+    </GridPane>
+    <HBox>
+    <Button fx:id="updateButton" text="" styleClass="button"/>
+    <Button fx:id="addButton" text="" styleClass="button"/>
+    <Button fx:id="closeButton" text="" styleClass="button"/>
+    </HBox>
     
     <stylesheets>
         <URL value="@style.css"/>

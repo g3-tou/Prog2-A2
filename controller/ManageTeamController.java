@@ -3,25 +3,15 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
-import java.util.List; // added by system
-import java.util.Observable; // added by system
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
-import model.InputException;
 import model.Team;
-import model.Teams;
 import model.Player;
-import model.Players;
 
-//just needs the selected team.... not the whole team list?
+
 public class ManageTeamController extends Controller<Team> {
 
     @FXML private Label teamName;
@@ -37,7 +27,7 @@ public class ManageTeamController extends Controller<Team> {
     @FXML Button saveCloseButton;
 
     
-    public Team getPlayer(){
+    public Team getTeam(){
         return model;
     }
 
@@ -51,7 +41,8 @@ public class ManageTeamController extends Controller<Team> {
         deleteButton.disableProperty().bind(playersTv.getSelectionModel().selectedItemProperty().isNull());
         addButton.disableProperty().bind(playersTv.getSelectionModel().selectedItemProperty().isNotNull());
 
-        playersTv.setItems(model.getCurrentPlayers());
+        playersTv.setItems(getTeam().getCurrentPlayers());
+        playersTv.getSelectionModel().getSelectedItem();
     }
     @FXML public void update(ActionEvent event) throws IOException {
         Stage uStage = new Stage();
@@ -59,7 +50,7 @@ public class ManageTeamController extends Controller<Team> {
         uStage.setY(ViewLoader.Y);
 
         uStage.getIcons().add(new Image("/view/edit.png"));
-        ViewLoader.showStage(getPlayer(), "/view/UpdatePlayerView.fxml", "Updating Player: " + model.getName(), uStage);
+        ViewLoader.showStage(getTeam(), "/view/PlayerUpdateView.fxml", "Updating Player: " + playersTv.getSelectionModel().getSelectedItem().getName(), uStage);
     }
 
     @FXML public void add(ActionEvent event) throws IOException {
@@ -68,7 +59,15 @@ public class ManageTeamController extends Controller<Team> {
         aStage.setY(ViewLoader.Y);
 
         aStage.getIcons().add(new Image("/view/edit.png"));
-        ViewLoader.showStage(getPlayer(), "/view/AddPlayerView.fxml", "Adding New Player", aStage);
+        ViewLoader.showStage(getTeam(), "/view/PlayerUpdateView.fxml", "Adding New Player", aStage);
+    }
+
+    @FXML public void delete(ActionEvent event) {
+        getTeam().getPlayers().removePlayer(playersTv.getSelectionModel().getSelectedItem()); 
+    }
+
+    @FXML public void saveClose(ActionEvent event){
+        stage.close();
     }
 
 }
