@@ -15,8 +15,18 @@
 <?import javafx.geometry.Insets?> 
 <?import javafx.scene.layout.GridPane?> 
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="500" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
-   
+<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="500" spacing="20" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="controller.RecordController">
+   <Label fx:id="result" text="Season Record" styleClass="label-header"/>
+   <TableView fx:id="results" styleClass="table-view">
+   <columns>
+    <TableColumn fx:id="round" text="Round" prefWidth="125"/>
+    <TableColumn fx:id="game" text="Game" prefWidth="125"/>
+    <TableColumn fx:id="winTeam" text="Winning Team" prefWidth="125"/>
+    <TableColumn fx:id="loseTeam" text="Losing Team" prefWidth="125"/>
+   </columns>
+   </TableView>
+   <Button fx:id="closeButton" styleClass="button" text="Close" onAction="#close"/>
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>

@@ -58,7 +58,8 @@ public class ViewPlayersController extends Controller<Teams> {
 
     /*I couldn't access the filter list in the players class as it kept returning 
     model.Teams cannot be cast to model.Players when I was using the Players model
-    so I had to do the filtering myself.*/
+    and I didn't know how to fix it and was running low on timeso I had to do 
+    the filtering myself.*/
     private void filterPlayers(){
     String nameFilter = byName.getText().toLowerCase(); 
     String levelFilter = byLevel.getText().toLowerCase(); 

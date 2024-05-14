@@ -1,28 +1,12 @@
 package controller;
 
-import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
-import java.io.IOException;
-import java.util.List; // added by system
-import java.util.Observable; // added by system
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList; // added by system
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.scene.image.Image;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import model.InputException;
 import model.Team;
-import model.Teams;
 import model.Season;
-import model.Record;
 import model.Game;
 
 public class TeamsRoundController extends Controller<Season> {
@@ -38,9 +22,9 @@ public class TeamsRoundController extends Controller<Season> {
     public Season getSeason(){
         return model;
     }
-    //private SimpleBooleanProperty twoTeamsSelected = new SimpleBooleanProperty(false);
 
     @FXML public void initialize(){
+        round.setText("Round " + getSeason().round()+round);
         teamsAddedTv.setPlaceholder(new Label("No teams added to round."));
         teamsLv.setPlaceholder(new Label("All teams added to round."));
         
