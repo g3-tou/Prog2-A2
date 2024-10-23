@@ -1,1 +1,2 @@
-player update controller doesn't work... has some errors im yet to figure out lmao 
+NBA GUI implementation using JavaFX.
+Has errors (player update controller etc... i think) :/
